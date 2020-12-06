@@ -4,7 +4,7 @@ Questões feitas em python. Não achei necessário criar um script para executar
 Visto que python executa facilmente seus arquivos.
 
 ### Questão 1
-Para executar a questão um basta ter o python instalado e rodar:
+Para executar a questão um basta ter o python instalado e rodar no terminal:
 ```bash
 python questao_1.py
 ```
