@@ -12,7 +12,7 @@ def embarcar(aluno):
 
 
 def remar(aluno):
-    log.info(f"{aluno} está remando...")
+    log.info(f"{aluno} está REMANDO...")
 
 
 class Barrier():
@@ -140,9 +140,9 @@ if __name__ == "__main__":
     alunos_uepb = int(input("Digite a quantidade de alunos da UEPB: "))
     counter = Counter(alunos_ufcg, alunos_uepb)
     for num in range(alunos_ufcg):
-        matricula = f"ue_{num}"
+        matricula = f"uf_{num}"
         _aluno = AlunoUFCG(matricula, counter)
 
     for num in range(alunos_uepb):
-        matricula = f"uf_{num}"
+        matricula = f"ue_{num}"
         _aluno = AlunoUEPB(matricula, counter)
