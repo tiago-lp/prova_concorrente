@@ -56,9 +56,9 @@ class Counter():
         self.mutex = Semaphore(1)
         self.mutex2 = Semaphore(1)
         self.boardQueue = Semaphore(0)
-        self.unboardQueue = Semaphore(0)
-        self.allAboard = Semaphore(0)
-        self.allAshore = Semaphore(0)
+        self.unboard_queue = Semaphore(0)
+        self.all_aboard = Semaphore(0)
+        self.all_ashore = Semaphore(0)
 
 
 class Carro(Thread):
@@ -118,15 +118,15 @@ class Carro(Thread):
 
             self.sinaliza_passageiros(self.counter.boardQueue)
                 
-            self.counter.allAboard.acquire()
+            self.counter.all_aboard.acquire()
             correr()
             sleep(random.randrange(0,2))
             parar()
             sleep(random.randrange(0,2))
             if self.counter.boarders == 0:
                 descarregar()
-                self.sinaliza_passageiros(self.counter.unboardQueue)
-                self.counter.allAshore.acquire()
+                self.sinaliza_passageiros(self.counter.unboard_queue)
+                self.counter.all_ashore.acquire()
 
 
 class Passageiro(Thread):
@@ -155,17 +155,17 @@ class Passageiro(Thread):
         self.counter.mutex.acquire()
         self.counter.boarders += 1
         if self.counter.boarders == self.counter.capacidade_max_carro:
-            self.counter.allAboard.release()
+            self.counter.all_aboard.release()
             self.counter.boarders = 0
 
         self.counter.mutex.release()
-        self.counter.unboardQueue.acquire()
+        self.counter.unboard_queue.acquire()
         desembarcar(self.id)
         self.counter.mutex2.acquire()
         self.counter.unboarders += 1
         self.counter.ja_viajaram += 1
         if self.counter.unboarders == self.counter.capacidade_max_carro:
-            self.counter.allAshore.release()
+            self.counter.all_ashore.release()
             self.counter.unboarders = 0
 
         self.counter.mutex2.release()
@@ -176,6 +176,5 @@ if __name__ == "__main__":
     numero_passageiros = int(input("Digite a quantidade de passageiros: "))
     counter = Counter(capacidade_carro, numero_passageiros)
     _carro = Carro(counter)
-    threads = []
     for num in range(numero_passageiros):
         _passageiro = Passageiro(counter, num)

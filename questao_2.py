@@ -1,8 +1,6 @@
 import logger
-from threading import Thread, Lock, Semaphore 
-import time
+from threading import Thread, Semaphore 
 import random
-from datetime import datetime
 from time import sleep
 
 
@@ -41,7 +39,6 @@ class Counter():
         Contador usa a logica do problema 5.7 do livro
         The Little Book of Semaphores
         """
-        self.lock = Lock()
         self.num_ufcg = ufcg
         self.num_uepb = uepb
         self.barrier = Barrier(4)
