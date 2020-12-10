@@ -42,12 +42,12 @@ def falta_passageiros(num, capacidade):
 
 
 class Counter():
+    """
+    Classe com atributos baseado na solucao dada no capitulo 5.8
+    do livro The Little Book of Semaphores. A classe é usada como
+    argumento de construção das classes Carro e Passageiro.
+    """
     def __init__(self, capacidade_max_carro, num_passageiros):
-        """
-        Classe com atributos baseado na solucao dada no capitulo 5.8
-        do livro The Little Book of Semaphores. A classe é usada como
-        argumento de construção das classes Carro e Passageiro.
-        """
         self.capacidade_max_carro = capacidade_max_carro
         self.num_passageiros = num_passageiros
         self.ja_viajaram = 0
@@ -62,17 +62,17 @@ class Counter():
 
 
 class Carro(Thread):
-    def __init__(self, counter):
-        """
-        Classe carro inicializa herdando da classe Thread
-        e a inicializa.
+    """
+    Classe carro inicializa herdando da classe Thread
+    e a inicializa.
 
-        Params
-        ------
-        counter : Counter
-            Referencia para a contagem de passageiros, capacidade
-            do carro e semaforos utilizados.
-        """
+    Attributes
+    ------
+    counter : Counter
+        Referencia para a contagem de passageiros, capacidade
+        do carro e semaforos utilizados.
+    """
+    def __init__(self, counter):
         Thread.__init__(self)
         self.counter = counter
         self.start()
@@ -130,20 +130,19 @@ class Carro(Thread):
 
 
 class Passageiro(Thread):
+    """
+    Classe passageiro inicializa herdando da classe Thread
+    e a inicializa.
 
+    Attributes
+    ------
+    counter : Counter
+        Referencia para a contagem de passageiros, capacidade
+        do carro e semaforos utilizados.
+    id : str, int
+        Identificador do passageiro para mostrar nos logs
+    """
     def __init__(self, counter, id):
-        """
-        Classe passageiro inicializa herdando da classe Thread
-        e a inicializa.
-
-        Params
-        ------
-        counter : Counter
-            Referencia para a contagem de passageiros, capacidade
-            do carro e semaforos utilizados.
-        id : str, int
-            Identificador do passageiro para mostrar nos logs
-        """
         Thread.__init__(self)
         self.id = id
         self.counter = counter

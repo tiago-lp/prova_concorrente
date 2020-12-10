@@ -19,13 +19,13 @@ def sai(aluno):
 
 
 class Counter():
+    """
+    Contador para ser reusado como referencia para
+    a classe Aluno.
+    Contador usa a logica do problema 7.6.1 do livro
+    The Little Book of Semaphores
+    """
     def __init__(self, alunos):
-        """
-        Contador para ser reusado como referencia para
-        a classe Aluno.
-        Contador usa a logica do problema 7.6.1 do livro
-        The Little Book of Semaphores
-        """
         self.alunos = alunos
         self.eating = 0
         self.ready_to_leave = 0

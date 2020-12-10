@@ -33,12 +33,13 @@ class Barrier():
 
 
 class Counter():
+    """
+    Contador para ser reusado como referencia para
+    as classes AlunoUFCG e AlunoUEPB.
+    Contador usa a logica do problema 5.7 do livro
+    The Little Book of Semaphores
+    """
     def __init__(self, ufcg, uepb):
-        """Contador para ser reusado como referencia para
-        as classes AlunoUFCG e AlunoUEPB.
-        Contador usa a logica do problema 5.7 do livro
-        The Little Book of Semaphores
-        """
         self.num_ufcg = ufcg
         self.num_uepb = uepb
         self.barrier = Barrier(4)
